@@ -27,6 +27,7 @@ class SleepTrackerViewModel(
         _navigateToSleepQuality.value = null
     }
 
+    // Change batons states to show and hide the buttons
     val startButtonVisible = Transformations.map(tonight) {
         it == null
     }
@@ -35,6 +36,16 @@ class SleepTrackerViewModel(
     }
     val clearButtonVisible = Transformations.map(nights) {
         it?.isNotEmpty()
+    }
+
+    // Show and hide the snackbar
+    private var _showSnackbarEvent = MutableLiveData<Boolean>()
+
+    val showSnackBarEvent: LiveData<Boolean>
+        get() = _showSnackbarEvent
+
+    fun doneShowingSnackbar() {
+        _showSnackbarEvent.value = false
     }
 
     // initialize tonight when the view model is created
@@ -85,6 +96,7 @@ class SleepTrackerViewModel(
             clear()
             tonight.value = null
         }
+        _showSnackbarEvent.value = true
     }
 
     private suspend fun clear() {
