@@ -27,6 +27,16 @@ class SleepTrackerViewModel(
         _navigateToSleepQuality.value = null
     }
 
+    val startButtonVisible = Transformations.map(tonight) {
+        it == null
+    }
+    val stopButtonVisible = Transformations.map(tonight) {
+        it != null
+    }
+    val clearButtonVisible = Transformations.map(nights) {
+        it?.isNotEmpty()
+    }
+
     // initialize tonight when the view model is created
     init {
         initializeTonight()
