@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.marawanxmamdouh.sleeptracker.database.SleepNight
-import dev.marawanxmamdouh.sleeptracker.databinding.ListItemSleepNightBinding
+import dev.marawanxmamdouh.sleeptracker.databinding.ListItemSleepNightGridBinding
 
 class SleepNightAdapter :
     ListAdapter<SleepNight, SleepNightAdapter.ViewHolder>(SleepNightDiffCallback()) {
@@ -21,7 +21,7 @@ class SleepNightAdapter :
 
     }
 
-    class ViewHolder private constructor(private val binding: ListItemSleepNightBinding) :
+    class ViewHolder private constructor(private val binding: ListItemSleepNightGridBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: SleepNight) {
@@ -32,7 +32,7 @@ class SleepNightAdapter :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListItemSleepNightBinding.inflate(layoutInflater, parent, false)
+                val binding = ListItemSleepNightGridBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
