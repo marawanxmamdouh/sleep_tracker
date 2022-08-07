@@ -27,6 +27,19 @@ class SleepTrackerViewModel(
         _navigateToSleepQuality.value = null
     }
 
+    // Navigation property for navigating to the SleepQualityFragment
+    private val _navigateToSleepDataQuality = MutableLiveData<Long>()
+    val navigateToSleepDataQuality
+        get() = _navigateToSleepDataQuality
+
+    fun onSleepNightClicked(id: Long){
+        _navigateToSleepDataQuality.value = id
+    }
+
+    fun onSleepDataQualityNavigated() {
+        _navigateToSleepDataQuality.value = null
+    }
+
     // Change batons states to show and hide the buttons
     val startButtonVisible = Transformations.map(tonight) {
         it == null
