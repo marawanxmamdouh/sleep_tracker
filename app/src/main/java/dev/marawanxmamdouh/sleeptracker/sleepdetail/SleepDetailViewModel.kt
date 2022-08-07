@@ -8,7 +8,7 @@ import dev.marawanxmamdouh.sleeptracker.database.SleepDatabaseDao
 import dev.marawanxmamdouh.sleeptracker.database.SleepNight
 
 class SleepDetailViewModel(
-    private val sleepNightKey: Long = 0L,
+    sleepNightKey: Long = 0L,
     dataSource: SleepDatabaseDao
 ) : ViewModel() {
 

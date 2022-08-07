@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.*
 import dev.marawanxmamdouh.sleeptracker.database.SleepDatabaseDao
 import dev.marawanxmamdouh.sleeptracker.database.SleepNight
-import dev.marawanxmamdouh.sleeptracker.formatNights
 import kotlinx.coroutines.launch
 
 class SleepTrackerViewModel(
@@ -12,11 +11,8 @@ class SleepTrackerViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
-    var tonight = MutableLiveData<SleepNight?>()
+    private var tonight = MutableLiveData<SleepNight?>()
     val nights = database.getAllNights()
-    val nightsString = Transformations.map(nights) { nights ->
-        formatNights(nights, application.resources)
-    }
 
     // Navigation property for navigating to the SleepQualityFragment
     private var _navigateToSleepQuality = MutableLiveData<SleepNight>()
@@ -32,7 +28,7 @@ class SleepTrackerViewModel(
     val navigateToSleepDataQuality
         get() = _navigateToSleepDataQuality
 
-    fun onSleepNightClicked(id: Long){
+    fun onSleepNightClicked(id: Long) {
         _navigateToSleepDataQuality.value = id
     }
 
